@@ -13,7 +13,8 @@
     "lint-staged": "lint-staged --verbose",
     "flow": "flow",
     "clean": "rimraf lib",
-    "dev": "nodemon src/index.js --exec babel-node"
+    "dev": "nodemon src/index.js --exec babel-node",
+    "deploy": "gh-pages -d src"
   },
   "author": "bob61016@gmail.com",
   "license": "MIT",
