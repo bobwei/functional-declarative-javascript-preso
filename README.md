@@ -1,10 +1,3 @@
-Live:
+# Js App Boilerplate
 
-[chetcorcos.com/functional-decarative-javascript-preso](http://www.chetcorcos.com/functional-decarative-javascript-preso)
-
-Local:
-
-```sh
-git@github.com:ccorcos/functional-decarative-javascript-preso.git
-open functional-decarative-javascript-preso/index.html
-```
+This is a js app boilerplate with batteries included to speed up project initiation.
