@@ -1,22 +1,24 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="assets/reveal.js/css/reveal.css">
-        <link rel="stylesheet" href="assets/reveal.js/css/theme/night.css">
-        <link rel="stylesheet" href="assets/reveal.js/lib/css/zenburn.css">
-        <link rel="stylesheet" href="custom.css">
-    </head>
-    <body>
-        <div class="reveal">
-            <div class="slides">
-                <section>
-                  <h2>Functional Declarative (Maintainable) JavaScript</h2>
-                  <h5>by Chet Corcos (Nov 2016)</h5>
-                  <p><a href="http://www.chetcorcos.com/functional-decarative-javascript-preso">chetcorcos.com/functional-decarative-javascript-preso</a></p>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Suppose we have a user that looks like this:</p>
-                  <pre>
+
+<head>
+  <link rel="stylesheet" href="assets/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="assets/reveal.js/css/theme/night.css">
+  <link rel="stylesheet" href="assets/reveal.js/lib/css/zenburn.css">
+  <link rel="stylesheet" href="custom.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h2>Functional Declarative (Maintainable) JavaScript</h2>
+        <h5>by Chet Corcos (Nov 2016)</h5>
+        <p><a href="http://www.chetcorcos.com/functional-decarative-javascript-preso">chetcorcos.com/functional-decarative-javascript-preso</a></p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Suppose we have a user that looks like this:</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const me = {
   name: {
@@ -30,11 +32,11 @@ const me = {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Maybe we want to know if today is this user's birthday:</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Maybe we want to know if today is this user's birthday:</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 // const me = {
 //   name: {
@@ -53,11 +55,11 @@ const isBirthday = (user, date) => {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Maybe we want to format the user info:</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Maybe we want to format the user info:</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 // const me = {
 //   name: {
@@ -77,11 +79,11 @@ const formatUser = user => {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Let's see if it works:</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Let's see if it works:</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const today = new Date()
 
@@ -92,7 +94,7 @@ formatUser(me) // {name: 'Chet Corcos', birthday: '12/18'}
 isBirthday(me, today) <span class="fragment">// Error?!</span>
                     </code>
                   </pre>
-                  <span class="fragment">
+        <span class="fragment">
                   <p>The problem is <i>in-place mutation.</i></p>
                   <pre>
                     <code data-trim data-noescape class="language-js">
@@ -105,11 +107,11 @@ const formatUser = user => {
                     </code>
                   </pre>
                   </span>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Let's return a new object instead.</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Let's return a new object instead.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 
 // const formatUser = user => {
@@ -126,11 +128,11 @@ const formatUser = user => {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>And now it works:</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>And now it works:</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const today = new Date()
 
@@ -141,20 +143,20 @@ formatUser(me) // {name: 'Chet Corcos', birthday: '12/18'}
 isBirthday(me, today) // false
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p><strong>Lesson 1:</strong> do not mutate data in-place</p>
-                  <ul>
-                    <li><a href="https://en.wikipedia.org/wiki/Immutable_object">immutable data</a> is easier to <i>understand</i></li>
-                    <li><a href="https://en.wikipedia.org/wiki/Immutable_object">immutable data</a> is easier to <i>predict</i></li>
-                    <li><a href="https://en.wikipedia.org/wiki/Immutable_object">immutable data</a> is easier to <i>statically analyze</i></li>
-                  </ul>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Suppose we have some data that looks like this:</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p><strong>Lesson 1:</strong> do not mutate data in-place</p>
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/Immutable_object">immutable data</a> is easier to <i>understand</i></li>
+          <li><a href="https://en.wikipedia.org/wiki/Immutable_object">immutable data</a> is easier to <i>predict</i></li>
+          <li><a href="https://en.wikipedia.org/wiki/Immutable_object">immutable data</a> is easier to <i>statically analyze</i></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Suppose we have some data that looks like this:</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const loans = [
   {status: 'due', amount: 10},
@@ -163,11 +165,11 @@ const loans = [
 ]
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Maybe we want to find the total overdue amount:</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Maybe we want to find the total overdue amount:</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 // const loans = [
 //   {status: 'due', amount: 10},
@@ -189,11 +191,11 @@ const getTotalOverdueAmount = loans => {
 getTotalOverdueAmount(loans) // 50</span>
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Now there's a new requirement and we want to exclude disputed loans from the calculation.</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Now there's a new requirement and we want to exclude disputed loans from the calculation.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const loans = [
   {status: 'due', amount: 10, disputed: false},
@@ -218,11 +220,11 @@ const getTotalOverdueAmount = loans => {
 getTotalOverdueAmount(loans) // 30</span>
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>So what's wrong with this code?</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>So what's wrong with this code?</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const getTotalOverdueAmount = loans => {
   let total = 0
@@ -237,21 +239,21 @@ const getTotalOverdueAmount = loans => {
 }
                     </code>
                   </pre>
-                  <ul>
-                    <li class="fragment">Hard to read!</li>
-                    <li class="fragment">This code will rot quickly.</li>
-                    <li class="fragment">This code isn't <i>declarative</i>.</li>
-                  </ul>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>What is <a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative</a> programming?</p>
-                  <p class="fragment">Say what you want, not how you want it done.</p>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Let's rewrite this code to be <i>more</i> declarative.</p>
-                  <pre>
+        <ul>
+          <li class="fragment">Hard to read!</li>
+          <li class="fragment">This code will rot quickly.</li>
+          <li class="fragment">This code isn't <i>declarative</i>.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>What is <a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative</a> programming?</p>
+        <p class="fragment">Say what you want, not how you want it done.</p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Let's rewrite this code to be <i>more</i> declarative.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 // const getTotalOverdueAmount = loans => {
 //   let total = 0
@@ -270,12 +272,12 @@ const getTotalOverdueAmount = loans => {
 }
                     </code>
                   </pre>
-                  <p class="fragment">We didn't say how to iterate over the list...</p>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>... but we can do even better.</p>
-                  <pre>
+        <p class="fragment">We didn't say how to iterate over the list...</p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>... but we can do even better.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 // const getTotalOverdueAmount = loans => {
 //   const overdueLoans = loans.filter(loan => loan.status === 'overdue')
@@ -297,11 +299,11 @@ const getTotalOverdueAmount = loans => {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>A <a href="https://en.wikipedia.org/wiki/Currying">curried funtion</a> takes its argument's one at a time.</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>A <a href="https://en.wikipedia.org/wiki/Currying">curried funtion</a> takes its argument's one at a time.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const prop = key => obj => obj[key]
 
@@ -311,21 +313,21 @@ const getAmount = prop('amount')
 const overdueAmounts = overdueLoans.map(prop('amount'))
                     </code>
                   </pre>
-                  <div class="fragment">
-                    <p>But some syntactic sugar is OK.</p>
-                    <pre>
+        <div class="fragment">
+          <p>But some syntactic sugar is OK.</p>
+          <pre>
                       <code data-trim data-noescape class="language-js">
 const propEq = (prop, value) => obj => obj[prop] === value
 
 const isOverdue = propEq('status', 'overdue')
                       </code>
                     </pre>
-                  </div>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Now let's filter disputed loans as well.</p>
-                  <pre>
+        </div>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Now let's filter disputed loans as well.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 // const getTotalOverdueAmount = loans => {
 //   const overdueLoans = loans.filter(propEq('status', 'overdue'))
@@ -345,11 +347,11 @@ const getTotalOverdueAmount = loans => {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>We can still do even better.</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>We can still do even better.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 // const getTotalOverdueAmount = loans => {
 //   const overdueLoans = loans.filter(propEq('status', 'overdue'))
@@ -374,12 +376,12 @@ const getTotalOverdueAmount = pipe([   <span class="fragment">// a point-free fu
 ])
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>What is a <a href="https://en.wikipedia.org/wiki/Tacit_programming">point-free</a> function?</p>
-                  <p>"Point-free programming (a.k.a tacit programming) is when a function never identifies its arguments (points) and is instead a specified as composition of other functions."</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>What is a <a href="https://en.wikipedia.org/wiki/Tacit_programming">point-free</a> function?</p>
+        <p>"Point-free programming (a.k.a tacit programming) is when a function never identifies its arguments (points) and is instead a specified as composition of other functions."</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const getTotalOverdueAmount = pipe([
   filter(propEq('status', 'overdue')),
@@ -389,21 +391,21 @@ const getTotalOverdueAmount = pipe([
 ])
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p><strong>Lesson 2:</strong> use function composition</p>
-                  <ul>
-                    <li><a href="https://en.wikipedia.org/wiki/Function_composition">funciton composition</a> is easier to <i>read</i></li>
-                    <li><a href="https://en.wikipedia.org/wiki/Function_composition">funciton composition</a> is easier to <i>understand</i></li>
-                    <li><a href="https://en.wikipedia.org/wiki/Function_composition">funciton composition</a> is easier to <i>maintain</i></li>
-                  </ul>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Now our code is declarative, but is it <i>performant</i>?</p>
-                  <p>How many times are we iterating through the list?</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p><strong>Lesson 2:</strong> use function composition</p>
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/Function_composition">funciton composition</a> is easier to <i>read</i></li>
+          <li><a href="https://en.wikipedia.org/wiki/Function_composition">funciton composition</a> is easier to <i>understand</i></li>
+          <li><a href="https://en.wikipedia.org/wiki/Function_composition">funciton composition</a> is easier to <i>maintain</i></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Now our code is declarative, but is it <i>performant</i>?</p>
+        <p>How many times are we iterating through the list?</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const getTotalOverdueAmount = pipe([
   filter(propEq('status', 'overdue')), // one
@@ -413,13 +415,13 @@ const getTotalOverdueAmount = pipe([
 ])
                     </code>
                   </pre>
-                  <p class="fragment">We can use <i>generators</i>!</p>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>What's a <a href="https://en.wikipedia.org/wiki/Generator_(computer_programming)">generator</a>?</p>
-                  <p>A generator is a function that yields values.</p>
-                  <pre>
+        <p class="fragment">We can use <i>generators</i>!</p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>What's a <a href="https://en.wikipedia.org/wiki/Generator_(computer_programming)">generator</a>?</p>
+        <p>A generator is a function that yields values.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 function *Counter() {
   let id = 0
@@ -434,12 +436,12 @@ counter.next() // {value: 2, done: false}
 counter.next() // {value: 3, done: false}
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Why do we use generators?</p>
-                  <p>Generators help us iterate <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazily</a> over lists.</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Why do we use generators?</p>
+        <p>Generators help us iterate <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazily</a> over lists.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const list = [1, 2, 3]
 
@@ -456,11 +458,11 @@ generator.next() // {value: undefined, done: true}
 [...ListGenerator] // [1, 2, 3]
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Let's make a lazy map!</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Let's make a lazy map!</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const lazyMap = fn => function*(Generator) {
   const generator = new Generator()
@@ -474,10 +476,11 @@ const lazyMap = fn => function*(Generator) {
 }
                     </code>
                   </pre>
-                </section>                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Let's make a lazy filter!</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Let's make a lazy filter!</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const lazyFilter = fn => function*(Generator) {
   const generator = new Generator()
@@ -493,11 +496,11 @@ const lazyFilter = fn => function*(Generator) {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Let's make a lazy reduce!</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Let's make a lazy reduce!</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const lazyReduce = (fn, init) => function*(Generator) {
   const generator = new Generator()
@@ -513,11 +516,11 @@ const lazyReduce = (fn, init) => function*(Generator) {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Let's make a lazy pipe!</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Let's make a lazy pipe!</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const lazyPipe = fnList => iterable => {
   const InputGenerator = new iterable[Symbol.iterable]()
@@ -526,11 +529,11 @@ const lazyPipe = fnList => iterable => {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>And now we're declarative and performant!</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>And now we're declarative and performant!</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 // const getTotalOverdueAmount = pipe([
 //   filter(propEq('status', 'overdue')),
@@ -547,12 +550,12 @@ const getTotalOverdueAmount = lazyPipe([
 ])
                     </code>
                   </pre>
-                  <p class="fragment">*more performant <span class="fragment">(space complexity)</span></p>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Now suppose we're manipulating a large amount of data.</p>
-                  <pre>
+        <p class="fragment">*more performant <span class="fragment">(space complexity)</span></p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Now suppose we're manipulating a large amount of data.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const actions = [
   {type: 'click-make-payment', loanId: 'JJR5-0PLM'},
@@ -563,11 +566,11 @@ const actions = [
 ]
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>What happens when we want to append an action to this array?</p>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>What happens when we want to append an action to this array?</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const appendAction = (action) => {
   actions.push(action) <span class="fragment">// NO! That's impure!</span>
@@ -585,40 +588,42 @@ const appendAction = (actions, action) => {
 }
                     </code>
                   </pre>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>Why immutability isn't performant?</p>
-                  <ul>
-                    <li>must clone the array just to append an item</li>
-                    <li>lots of memory for the garbage collector to clean up</li>
-                    <ul><li>aka <a href="https://en.wikipedia.org/wiki/Thrashing_(computer_science)">garbage thrashing</a></li></ul>
-                  </ul>
-                  <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Why immutability isn't performant?</p>
+        <ul>
+          <li>must clone the array just to append an item</li>
+          <li>lots of memory for the garbage collector to clean up</li>
+          <ul>
+            <li>aka <a href="https://en.wikipedia.org/wiki/Thrashing_(computer_science)">garbage thrashing</a></li>
+          </ul>
+        </ul>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 const appendAction = (actions, action) => {
   return [...actions, action]
 }
                     </code>
                   </pre>
-                  <p class="fragment">We can use <i>persistent data structures</i>!</p>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>What are <a href="https://en.wikipedia.org/wiki/Persistent_data_structure">persistent data structures</a>?</p>
-                  <p>Data structures that preseve the previous version of itself when its modified... like a linked-list!</p>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>What is a <i>linked list</i>?</p>
-                  <p class="fragment">... just kidding</p>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>How do we use <i>persistent data structures</i> without hating our lives?</p>
-                  <div class="fragment">
-                    <p><a href="https://facebook.github.io/immutable-js/">ImmutableJS</a> to the rescue!</p>
-                    <pre>
+        <p class="fragment">We can use <i>persistent data structures</i>!</p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>What are <a href="https://en.wikipedia.org/wiki/Persistent_data_structure">persistent data structures</a>?</p>
+        <p>Data structures that preseve the previous version of itself when its modified... like a linked-list!</p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>What is a <i>linked list</i>?</p>
+        <p class="fragment">... just kidding</p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>How do we use <i>persistent data structures</i> without hating our lives?</p>
+        <div class="fragment">
+          <p><a href="https://facebook.github.io/immutable-js/">ImmutableJS</a> to the rescue!</p>
+          <pre>
                       <code data-trim data-noescape class="language-js">
 import { List } from 'immutable'
 
@@ -635,12 +640,12 @@ const trackAction = (actions, action) => {
 }
                       </code>
                     </pre>
-                  </div>
-                </section>
-                <section>
-                  <h2>Functional Programming</h2>
-                  <p>ImmutableJS has all kinds of persistent data structures.</p>
-                  <pre>
+        </div>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>ImmutableJS has all kinds of persistent data structures.</p>
+        <pre>
                     <code data-trim data-noescape class="language-js">
 import { Map } from 'immutable'
 
@@ -658,31 +663,31 @@ const me = new Map({
 me.getIn(['name', 'first']) // 'Chet'
                   </code>
                 </pre>
-              </section>
-              <section>
-                <h2>Functional Programming</h2>
-                <p><strong>Lesson 3:</strong> functional programming can be performant!</p>
-                <ul>
-                  <li>use <a href="https://en.wikipedia.org/wiki/Generator_(computer_programming)">generators</a></li>
-                  <li>use <a href="https://en.wikipedia.org/wiki/Persistent_data_structure">persistent data structures</a></li>
-                </ul>
-              </section>
-              <section>
-                <h2>Extra Resources</h2>
-                <ul>
-                  <li><a href="http://fr.umio.us/why-ramda/">"Why Ramda?"</a> -- about currying, function composition, and point-free programming</li>
-                  <li><a href="https://drboolean.gitbooks.io/mostly-adequate-guide/content/">"Mostly Adequate Guide"</a> ...to functional programming in JavaScript</li>
-                  <li><a href="https://medium.com/@chetcorcos/functional-programming-for-javascript-people-1915d8775504">"Functional Programming for JavaScript People"</a></li>
-                  <li><a href="https://www.youtube.com/watch?v=-6BsiVyC1kM">"The Values of Values"</a> -- a talk about why Immutability is good.</li>
-                  <li><a href="https://www.infoq.com/presentations/Simple-Made-Easy">"Simple Made Easy"</a> -- a talk motivating functional programming concepts from a Java perspective</li>
-                </ul>
-              </section>
-              <section>
-                <h2>Bonus Round</h2>
-              </section>
-              <section>
-                <h2>Bonus Round</h2>
-                <pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p><strong>Lesson 3:</strong> functional programming can be performant!</p>
+        <ul>
+          <li>use <a href="https://en.wikipedia.org/wiki/Generator_(computer_programming)">generators</a></li>
+          <li>use <a href="https://en.wikipedia.org/wiki/Persistent_data_structure">persistent data structures</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Extra Resources</h2>
+        <ul>
+          <li><a href="http://fr.umio.us/why-ramda/">"Why Ramda?"</a> -- about currying, function composition, and point-free programming</li>
+          <li><a href="https://drboolean.gitbooks.io/mostly-adequate-guide/content/">"Mostly Adequate Guide"</a> ...to functional programming in JavaScript</li>
+          <li><a href="https://medium.com/@chetcorcos/functional-programming-for-javascript-people-1915d8775504">"Functional Programming for JavaScript People"</a></li>
+          <li><a href="https://www.youtube.com/watch?v=-6BsiVyC1kM">"The Values of Values"</a> -- a talk about why Immutability is good.</li>
+          <li><a href="https://www.infoq.com/presentations/Simple-Made-Easy">"Simple Made Easy"</a> -- a talk motivating functional programming concepts from a Java perspective</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Bonus Round</h2>
+      </section>
+      <section>
+        <h2>Bonus Round</h2>
+        <pre>
                   <code data-trim data-noescape class="language-js">
 // compose is the opposite of pipe
 const compose = a => b => c => a(b(c))
@@ -697,10 +702,10 @@ const add = (a, b) => a + b
 const sum = reduce(add, 0)
                   </code>
                 </pre>
-              </section>
-              <section>
-                <h2>Bonus Round</h2>
-                <pre>
+      </section>
+      <section>
+        <h2>Bonus Round</h2>
+        <pre>
                   <code data-trim data-noescape class="language-js">
 const compose = a => b => c => a(b(c))
 
@@ -719,10 +724,10 @@ const loans = [
 getTotalAmount(loans) // => 60
                   </code>
                 </pre>
-              </section>
-              <section>
-                <h2>Bonus Round</h2>
-                <pre>
+      </section>
+      <section>
+        <h2>Bonus Round</h2>
+        <pre>
                   <code data-trim data-noescape class="language-js">
 const compose = a => b => c => a(b(c))
 const blackbird = compose(compose)(compose)
@@ -734,65 +739,96 @@ totalAmount(loans) // => 60
 </span>
                   </code>
                 </pre>
-              </section>
-              <section>
-                <h2>Bonus Round</h2>
-                <p>These are well established abstractions!</p>
-                <pre>
+      </section>
+      <section>
+        <h2>Bonus Round</h2>
+        <p>These are well established abstractions!</p>
+        <pre>
                   <code data-trim data-noescape class="language-js">
 const compose = a => b => c => a(b(c))         // haskell> a . b
 const blackbird = compose(compose)(compose)    // haskell> (.) . (.)
 const aggregate = blackbird(sum)(map)          // haskell> sum ... map
                   </code>
                 </pre>
-              </section>
-              <section>
-                <h2>Bonus Round</h2>
-                <p><strong>Lesson 4:</strong> abstraction</p>
-                <ul>
-                  <li>no abstraction &gt; bad abstraction</li>
-                  <li>use established abstractions (e.g. map, filter, reduce)</li>
-                  <li>learn more established abstractions (e.g. pipe, compose, blackbird and <a href="https://github.com/fantasyland/fantasy-birds/blob/master/README.md">other <i>combinators</i></a>)</li>
-                  <li class="fragment">good luck and go learn!</li>
-                </ul>
-              </section>
-          </section>
-          <section>
-            <h2>Bonus Resources</h2>
-            <ul>
-              <li><a href="https://www.youtube.com/watch?v=seVSlKazsNk&list=PLcGKfGEEONaDvuLDFFKRfzbsaBuVVXdYa&index=20">"Point Free or Die"</a></li>
-              <li><a href="https://github.com/fantasyland/fantasy-land">Fantasy Land</a></li>
-              <li><a href="https://github.com/fantasyland/fantasy-birds">Fantasy Birds</a></li>
-            </ul>
-          </section>
-        </div>
-      </div>
-      <script src="assets/reveal.js/lib/js/head.min.js"></script>
-      <script src="assets/reveal.js/js/reveal.js"></script>
-      <script>
-        Reveal.initialize({
-          history: true,
-          dependencies: [
-            // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
-            { src: 'assets/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      </section>
+      <section>
+        <h2>Bonus Round</h2>
+        <p><strong>Lesson 4:</strong> abstraction</p>
+        <ul>
+          <li>no abstraction &gt; bad abstraction</li>
+          <li>use established abstractions (e.g. map, filter, reduce)</li>
+          <li>learn more established abstractions (e.g. pipe, compose, blackbird and <a href="https://github.com/fantasyland/fantasy-birds/blob/master/README.md">other <i>combinators</i></a>)</li>
+          <li class="fragment">good luck and go learn!</li>
+        </ul>
+      </section>
+      </section>
+      <section>
+        <h2>Bonus Resources</h2>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=seVSlKazsNk&list=PLcGKfGEEONaDvuLDFFKRfzbsaBuVVXdYa&index=20">"Point Free or Die"</a></li>
+          <li><a href="https://github.com/fantasyland/fantasy-land">Fantasy Land</a></li>
+          <li><a href="https://github.com/fantasyland/fantasy-birds">Fantasy Birds</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <script src="assets/reveal.js/lib/js/head.min.js"></script>
+  <script src="assets/reveal.js/js/reveal.js"></script>
+  <script>
+  Reveal.initialize({
+  history: true,
+  dependencies: [
+    // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+    {
+      src: 'assets/reveal.js/lib/js/classList.js',
+      condition: function() {
+        return !document.body.classList;
+      },
+    },
 
-            // Interpret Markdown in <section> elements
-            { src: 'assets/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-            { src: 'assets/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    // Interpret Markdown in <section> elements
+    {
+      src: 'assets/reveal.js/plugin/markdown/marked.js',
+      condition: function() {
+        return !!document.querySelector('[data-markdown]');
+      },
+    },
+    {
+      src: 'assets/reveal.js/plugin/markdown/markdown.js',
+      condition: function() {
+        return !!document.querySelector('[data-markdown]');
+      },
+    },
 
-            // Syntax highlight for <code data-trim data-noescape class="language-js"> elements
-            { src: 'assets/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+    // Syntax highlight for <code data-trim data-noescape class="language-js"> elements
+    {
+      src: 'assets/reveal.js/plugin/highlight/highlight.js',
+      async: true,
+      callback: function() {
+        hljs.initHighlightingOnLoad();
+      },
+    },
 
-            // Zoom in and out with Alt+click
-            { src: 'assets/reveal.js/plugin/zoom-js/zoom.js', async: true },
+    // Zoom in and out with Alt+click
+    {
+      src: 'assets/reveal.js/plugin/zoom-js/zoom.js',
+      async: true,
+    },
 
-            // Speaker notes
-            { src: 'assets/reveal.js/plugin/notes/notes.js', async: true },
+    // Speaker notes
+    {
+      src: 'assets/reveal.js/plugin/notes/notes.js',
+      async: true,
+    },
 
-            // MathJax
-            { src: 'assets/reveal.js/plugin/math/math.js', async: true }
-          ]
-        });
-    </script>
-  </body>
+    // MathJax
+    {
+      src: 'assets/reveal.js/plugin/math/math.js',
+      async: true,
+    },
+  ],
+});
+</script>
+</body>
+
 </html>
