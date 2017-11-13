@@ -8,7 +8,7 @@ const config = {
     ...(process.env.NODE_ENV === 'production'
       ? []
       : ['webpack-dev-server/client?http://localhost:8080']),
-    './src/index.js',
+    './src/modules/presentation/index.js',
   ],
   output: {
     path: path.join(__dirname, 'build'),
@@ -18,7 +18,7 @@ const config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
-    new CopyWebpackPlugin([{ from: 'src' }]),
+    new CopyWebpackPlugin([{ from: 'src/modules/presentation' }]),
     ...(process.env.NODE_ENV === 'production'
       ? [
           new webpack.optimize.UglifyJsPlugin({
@@ -31,7 +31,7 @@ const config = {
       : [
           new webpack.HotModuleReplacementPlugin(),
           new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './src/modules/presentation/index.html',
           }),
         ]),
   ],
