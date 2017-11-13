@@ -1,8 +1,7 @@
-
 @font-face {
   font-family: 'FiraCode';
   src: url('assets/FiraCode-Regular.woff2') format('woff2'),
-       url('assets/FiraCode-Regular.woff') format('woff');
+    url('assets/FiraCode-Regular.woff') format('woff');
 }
 
 .reveal pre code {
@@ -12,4 +11,8 @@
 
 img.large {
   height: 16em;
+}
+
+p.forked {
+  font-size: 14px;
 }
