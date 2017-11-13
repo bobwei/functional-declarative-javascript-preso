@@ -5,8 +5,8 @@ Introduction to functional programming in Javascript.
 
 ## V2
 - [ ] functional programming properties
-  - [ ] composition
   - [ ] declarative
+  - [ ] composition
   - [ ] immutable
 - [ ] example with data transform
 

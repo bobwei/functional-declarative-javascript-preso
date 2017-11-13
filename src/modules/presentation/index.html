@@ -20,6 +20,127 @@
           Forked from <a href="https://github.com/ccorcos/functional-decarative-javascript-preso">https://github.com/ccorcos/functional-decarative-javascript-preso</a>
         </p>
       </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Suppose we have some data that looks like this:</p>
+        <pre>
+                    <code data-trim data-noescape class="language-js">
+const loans = [
+  {status: 'due', amount: 10},
+  {status: 'overdue', amount: 20},
+  {status: 'overdue', amount: 30},
+]
+                    </code>
+                  </pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Maybe we want to find the total overdue amount:</p>
+        <pre>
+                    <code data-trim data-noescape class="language-js">
+// const loans = [
+//   {status: 'due', amount: 10},
+//   {status: 'overdue', amount: 20},
+//   {status: 'overdue', amount: 30},
+// ]
+
+const getTotalOverdueAmount = loans => {
+  let total = 0
+  for (let i = 0; i < loans.length; i++) {
+    if (loans[i].status === 'overdue') {
+      total += loans[i].amount
+    }
+  }
+  return total
+}
+
+<span class="fragment">// and it works
+getTotalOverdueAmount(loans) // 50</span>
+                    </code>
+                  </pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Now there's a new requirement and we want to exclude disputed loans from the calculation.</p>
+        <pre>
+                    <code data-trim data-noescape class="language-js">
+const loans = [
+  {status: 'due', amount: 10, disputed: false},
+  {status: 'overdue', amount: 20, disputed: true},
+  {status: 'overdue', amount: 30, disputed: false},
+]
+
+const getTotalOverdueAmount = loans => {
+  let total = 0
+  for (let i = 0; i < loans.length; i++) {
+    if (loans[i].status === 'overdue') {
+      // add a new condition
+      if (!loans[i].disputed) {
+        total += loans[i].amount
+      }
+    }
+  }
+  return total
+}
+
+<span class="fragment">// and it works
+getTotalOverdueAmount(loans) // 30</span>
+                    </code>
+                  </pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>So what's wrong with this code?</p>
+        <pre>
+                    <code data-trim data-noescape class="language-js">
+const getTotalOverdueAmount = loans => {
+  let total = 0
+  for (let i = 0; i < loans.length; i++) {
+    if (loans[i].status === 'overdue') {
+      if (!loans[i].disputed) {
+        total += loans[i].amount
+      }
+    }
+  }
+  return total
+}
+                    </code>
+                  </pre>
+        <ul>
+          <li class="fragment">Hard to read!</li>
+          <li class="fragment">This code will rot quickly.</li>
+          <li class="fragment">This code isn't <i>declarative</i>.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>What is <a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative</a> programming?</p>
+        <p class="fragment">Say what you want, not how you want it done.</p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Let's rewrite this code to be <i>more</i> declarative.</p>
+        <pre>
+                    <code data-trim data-noescape class="language-js">
+// const getTotalOverdueAmount = loans => {
+//   let total = 0
+//   for (let i = 0; i < loans.length; i++) {
+//     if (loans[i].status === 'overdue') {
+//       total += loans[i].amount
+//     }
+//   }
+//   return total
+// }
+
+const getTotalOverdueAmount = loans => {
+  const overdueLoans = loans.filter(loan => loan.status === 'overdue')
+  const totalAmount = overdueLoans.reduce((total, loan) => total + loan.amount, 0)
+  return totalAmount
+}
+                    </code>
+                  </pre>
+        <p class="fragment">We didn't say how to iterate over the list...</p>
+      </section>
     </div>
   </div>
   <script src="assets/reveal.js/lib/js/head.min.js"></script>
