@@ -172,6 +172,32 @@ const getTotalOverdueAmount = loans => {
                   </pre>
         <p class="fragment">We didn't say how to iterate over the list...</p>
       </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>... but we can do even better.</p>
+        <pre>
+                    <code data-trim data-noescape class="language-js">
+// const getTotalOverdueAmount = loans => {
+//   const overdueLoans = loans.filter(loan => loan.status === 'overdue')
+//   const totalAmount = overdueLoans.reduce((total, loan) => total + loan.amount, 0)
+//   return totalAmount
+// }
+
+const sum = (a, b) => a + b
+
+const prop = key => obj => obj[key] <span class="fragment">// a curried function!</span>
+
+const propEq = (prop, value) => obj => obj[prop] === value
+
+const getTotalOverdueAmount = loans => {
+  const overdueLoans = loans.filter(propEq('status', 'overdue'))
+  const overdueAmounts = overdueLoans.map(prop('amount'))
+  const totalAmount = overdueAmounts.reduce(sum, 0)
+  return totalAmount
+}
+                    </code>
+                  </pre>
+      </section>
     </div>
   </div>
   <script src="assets/reveal.js/lib/js/head.min.js"></script>
