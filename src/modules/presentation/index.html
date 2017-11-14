@@ -198,6 +198,118 @@ const getTotalOverdueAmount = loans => {
                     </code>
                   </pre>
       </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Suppose we have a function like this:</p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+const propEq = (prop, value, obj) => {
+  return obj[prop] === value;
+};
+          </code>
+        </pre>
+        <div class="fragment">
+          <p>Before knowing curry, we invoke function like this:</p>
+          <pre>
+            <code data-trim data-noescape class="language-js">
+const user = {
+  name: 'Bob',
+  gender: 'male',
+};
+console.log(propEq('gender', 'male', user)) // true
+            </code>
+          </pre>
+          <ul>
+            <li class="fragment">Have to pass all arguments at once</li>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>If we want to test n objects, then we have to do like this:</p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+const users = [
+  { name: 'Bob', gender: 'male' },
+  { name: 'Mark Zuckerberg', gender: 'male' },
+  { name: 'Marissa Mayer', gender: 'female' },
+];
+const isFemale = user => propEq('gender', 'female', user);
+const femaleUsers = users.filter(isFemale);
+// [{ name: 'Marissa Mayer', gender: 'female' }]
+          </code>
+        </pre>
+        <ul>
+          <li class="fragment">
+            1st and 2nd arguments did not change everytime propEq was invoked.
+          </li>
+          <li class="fragment">
+            If we can create a function with 1st and 2nd arguments prefilled and awaiting the object to test ?
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
+          A <a href="https://en.wikipedia.org/wiki/Currying">curried funtion</a>
+          is a function taking its arguments one or more at a time.
+          The function is invoked only when all arguments are received.
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+const propEq = (prop, value) => {
+  return obj => {
+    return obj[prop] === value;
+  };
+};
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+/* more concise syntax */
+const propEq = (prop, value) => obj => obj[prop] === value;
+
+/* typeof propEq('gender', 'female') === 'function' */
+propEq('gender', 'female')
+
+/* leaving third argument to filter function */
+propEq('gender', 'female')({ gender: 'female' }) // true
+          </code>
+        </pre>
+        <p class="fragment">
+          It's useful to take arguments from different sources without keeping references
+        </p>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Rewriting with <a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative</a> way and <a href="https://en.wikipedia.org/wiki/Currying">curried funtion</a>.</p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+/* utility functions */
+const prop = key => obj => obj[key];
+const propEq = (key, value) => obj => prop(key, obj) === value;
+const sum = (a, b) => a + b;
+
+const loans = [
+  { status: 'due', amount: 10, disputed: false },
+  { status: 'overdue', amount: 20, disputed: true },
+  { status: 'overdue', amount: 30, disputed: false },
+];
+
+const totalOverdueAmount = loans
+  .filter(propEq('status', 'overdue'))
+  .filter(propEq('disputed', false))
+  .map(prop('amount'))
+  .reduce(sum, 0)
+          </code>
+        </pre>
+        <p>
+          Comparing with <a href="#/4">Imperative way</a>
+        </p>
+      </section>
     </div>
   </div>
   <script src="assets/reveal.js/lib/js/head.min.js"></script>
