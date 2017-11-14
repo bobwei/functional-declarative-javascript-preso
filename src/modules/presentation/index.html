@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="assets/reveal.js/css/reveal.css">
   <link rel="stylesheet" href="assets/reveal.js/css/theme/night.css">
   <link rel="stylesheet" href="assets/reveal.js/lib/css/zenburn.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
   <link rel="stylesheet" href="custom.css">
 </head>
 
@@ -116,6 +117,36 @@ const getTotalOverdueAmount = loans => {
         <h2>Functional Programming</h2>
         <p>What is <a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative</a> programming?</p>
         <p class="fragment">Say what you want, not how you want it done.</p>
+      </section>
+      <section>
+        <h2>Imperative vs Declarative</h2>
+        <div class="row">
+          <div class="col-xs-6">
+            <pre>
+              <code data-trim data-noescape>
+docker service create --name my_web \
+        --replicas 3 \
+        --publish 8080:80 \
+        nginx
+              </code>
+            </pre>
+          </div>
+          <div class="col-xs-6">
+            <pre>
+              <code data-trim data-noescape>
+version: '3'
+
+services:
+  my_web:
+    image: nginx
+    ports:
+      - 8081:80
+    deploy:
+      replicas: 4
+              </code>
+            </pre>
+          </div>
+        </div>
       </section>
       <section>
         <h2>Functional Programming</h2>
