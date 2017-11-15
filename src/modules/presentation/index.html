@@ -311,14 +311,14 @@ const totalOverdueAmount = loans
             Comparing with <a href="#/4">Imperative way</a>
           </li>
           <li class="fragment">
-            We are not able to reuse the transform function.
+            We are not able to reuse the transform functions.
           </li>
         </ul>
       </section>
       <section>
         <h2>Functional Programming</h2>
         <p>
-          Let's rewrite with reusable function
+          Let's rewrite to reusable function
         </p>
         <pre class="fragment">
           <code data-trim data-noescape class="language-js">
@@ -576,11 +576,13 @@ const fn = compose(
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-72851924-2"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+window.dataLayer = window.dataLayer || [];
+function gtag() {
+  dataLayer.push(arguments);
+}
+gtag('js', new Date());
 
-  gtag('config', 'UA-72851924-2');
+gtag('config', 'UA-72851924-2');
 </script>
 </body>
 
