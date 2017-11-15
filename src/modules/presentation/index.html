@@ -306,9 +306,181 @@ const totalOverdueAmount = loans
   .reduce(sum, 0)
           </code>
         </pre>
+        <ul>
+          <li>
+            Comparing with <a href="#/4">Imperative way</a>
+          </li>
+          <li class="fragment">
+            We are not able to reuse the transform function.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
         <p>
-          Comparing with <a href="#/4">Imperative way</a>
+          Let's rewrite with reusable function
         </p>
+        <pre class="fragment">
+          <code data-trim data-noescape class="language-js">
+const getTotalOverdueAmount = arr => arr
+  .filter(propEq('status', 'overdue'))
+  .filter(propEq('disputed', false))
+  .map(prop('amount'))
+  .reduce(sum, 0);
+          </code>
+        </pre>
+        <ul>
+          <li class="fragment">
+            Need to give the input array a name ( <a>arr</a> )
+          </li>
+          <li class="fragment">
+            Is it possible to avoid unnecessary variables ?
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
+          Let's remove unnecessary intermedia variables
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+const input = [{ status: 'due', amount: 10, disputed: false }];
+
+const filter = fn => arr => arr.filter(fn);
+const map = fn => arr => arr.map(fn);
+const reduce = (fn, initialValue) => arr => arr.reduce(fn, initialValue);
+
+const v1 = filter(propEq('status', 'overdue'))(input);
+const v2 = filter(propEq('disputed', false))(v1);
+const v3 = map(prop('amount'))(v2);
+const v4 = reduce(sum, 0)(v3);
+
+expect(v4).toEqual(totalOverdueAmount); // true
+          </code>
+        </pre>
+        <ul>
+          <li class="fragment">
+            Does it look like a <a>reduce</a> function ?
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
+          <a>Reduce</a> function
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+const fns = [
+  filter(propEq('status', 'overdue')),
+  filter(propEq('disputed', false)),
+  map(prop('amount')),
+  reduce(sum, 0),
+];
+const result = fns.reduce((acc, fn) => fn(acc), input);
+expect(result).toEqual(totalOverdueAmount); // true
+          </code>
+        </pre>
+        <ul>
+          <li class="fragment">
+            We are now able to apply <a>input</a> to a list of <a>functions</a>.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
+          Let's define compose function
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+/*
+  Compose takes a list of functions and returns a function waiting for input.
+  When input given, apply input to a series of functions and return as result.
+*/
+const compose = fns => {
+  return input => {
+    return fns.reduceRight((acc, fn) => fn(acc), input);
+  };
+};
+const fn = compose([
+  reduce(sum, 0),
+  map(prop('amount')),
+  filter(propEq('disputed', false)),
+  filter(propEq('status', 'overdue')),
+]);
+expect(typeof fn).toEqual('function'); // true
+expect(fn(input)).toEqual(totalOverdueAmount); // true
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
+          More generalize
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+/*
+  Compose takes a list of functions and returns a function waiting for input.
+  When input given, apply input to a series of functions and return as result.
+*/
+const compose = (...fns) => {
+  return arg => {
+    return fns.reduceRight((acc, fn) => fn(acc), arg);
+  };
+};
+const fn = compose(
+  reduce(sum, 0),
+  map(prop('amount')),
+  filter(propEq('disputed', false)),
+  filter(propEq('status', 'overdue')),
+);
+expect(typeof fn).toEqual('function'); // true
+expect(fn(input)).toEqual(totalOverdueAmount); // true
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
+          Why <a>Compose</a> ?
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+const fn = compose(
+  reduce(sum, 0),
+  map(prop('amount')),
+  filter(propEq('disputed', false)),
+  filter(propEq('status', 'overdue')),
+);
+          </code>
+        </pre>
+        <ul>
+          <li class="fragment">
+            <a>Declaratively</a> describing a series of transformations.
+          </li>
+          <li class="fragment">
+            Compose complex logic from smaller, generic and reusable functions.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
+          General Tips
+        </p>
+        <ul>
+          <li class="fragment">
+            Define your function as small as possible.
+            <ul class="fragment">
+              <li>
+                <span>Greater the power, less the reusability.</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </section>
     </div>
   </div>

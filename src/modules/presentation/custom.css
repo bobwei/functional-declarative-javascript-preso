@@ -24,3 +24,12 @@ p.forked {
 .reveal pre code {
   font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
 }
+
+.reveal ul ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
