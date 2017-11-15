@@ -341,7 +341,33 @@ const getTotalOverdueAmount = arr => arr
       <section>
         <h2>Functional Programming</h2>
         <p>
-          Let's remove unnecessary intermedia variables
+          Let's take a look how's the value evaluated first !
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+const input = [{ status: 'due', amount: 10, disputed: false }];
+
+const v1 = input.filter(propEq('status', 'overdue'));
+const v2 = v1.filter(propEq('disputed', false));
+const v3 = v2.map(prop('amount'));
+const v4 = v3.reduce(sum, 0);
+
+expect(v4).toEqual(totalOverdueAmount); // true
+          </code>
+        </pre>
+        <ul>
+          <li class="fragment">
+            filter, map and reduce are functions attached to array
+          </li>
+          <li class="fragment">
+            Is is possible to define functions that can take array as an argument ?
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
+          Let's rewrite functions !
         </p>
         <pre>
           <code data-trim data-noescape class="language-js">
@@ -368,7 +394,32 @@ expect(v4).toEqual(totalOverdueAmount); // true
       <section>
         <h2>Functional Programming</h2>
         <p>
-          <a>Reduce</a> function
+          How reduce function works ?
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+/*
+  Given an array of functions and an initialValue
+  [
+    filter(propEq('status', 'overdue')),
+    filter(propEq('disputed', false)),
+    map(prop('amount')),
+    reduce(sum, 0),
+  ],
+  input,
+  => apply current value to each fn and return
+*/
+const v1 = filter(propEq('status', 'overdue'))(input);
+const v2 = filter(propEq('disputed', false))(v1);
+const v3 = map(prop('amount'))(v2);
+const v4 = reduce(sum, 0)(v3);
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=b">Reduce</a> function
         </p>
         <pre>
           <code data-trim data-noescape class="language-js">
@@ -384,7 +435,7 @@ expect(result).toEqual(totalOverdueAmount); // true
         </pre>
         <ul>
           <li class="fragment">
-            We are now able to apply <a>input</a> to a list of <a>functions</a>.
+            We are now able to apply <a>input</a> to a series of <a>functions</a>.
           </li>
         </ul>
       </section>
@@ -396,7 +447,7 @@ expect(result).toEqual(totalOverdueAmount); // true
         <pre>
           <code data-trim data-noescape class="language-js">
 /*
-  Compose takes a list of functions and returns a function waiting for input.
+  Compose takes a series of functions and returns a function waiting for input.
   When input given, apply input to a series of functions and return as result.
 */
 const compose = fns => {
