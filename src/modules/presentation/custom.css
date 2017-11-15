@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
   font-family: 'FiraCode';
   src: url('assets/FiraCode-Regular.woff2') format('woff2'),
     url('assets/FiraCode-Regular.woff') format('woff');
@@ -6,6 +6,9 @@
 
 .reveal pre code {
   font-family: 'FiraCode';
+}*/
+
+.reveal pre code {
   padding: 15px;
 }
 
@@ -15,4 +18,8 @@ img.large {
 
 p.forked {
   font-size: 14px;
+}
+
+.reveal pre code {
+  font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
 }
