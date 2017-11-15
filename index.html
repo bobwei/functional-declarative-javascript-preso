@@ -469,6 +469,38 @@ const fn = compose(
       <section>
         <h2>Functional Programming</h2>
         <p>
+          Composable ?
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+const v1 = filter(propEq('status', 'overdue'))(input);
+const v2 = filter(propEq('disputed', false))(v1);
+const v3 = map(prop('amount'))(v2);
+const v4 = reduce(sum, 0)(v3);
+
+const fn = compose(
+  reduce(sum, 0),
+  map(prop('amount')),
+  filter(propEq('disputed', false)),
+  filter(propEq('status', 'overdue')),
+);
+          </code>
+        </pre>
+        <ul>
+          <li class="fragment">
+            <a>Currify</a> your function.
+          </li>
+          <li class="fragment">
+            Pre-filled your function and leave only one argument.
+          </li>
+          <li class="fragment">
+            Put your data as last argument.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
           General Tips
         </p>
         <ul>
