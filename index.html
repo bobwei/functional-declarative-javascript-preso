@@ -4,8 +4,8 @@
   <link rel="stylesheet" href="assets/reveal.js/css/reveal.css">
   <link rel="stylesheet" href="assets/reveal.js/css/theme/night.css">
   <link rel="stylesheet" href="assets/reveal.js/lib/css/zenburn.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
-  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="assets/flexboxgrid.min.css" type="text/css" >
+  <link rel="stylesheet" href="custom.css" type="text/css">
 </head>
 
 <body>
@@ -20,6 +20,38 @@
         <p class="forked">
           Forked from <a href="https://github.com/ccorcos/functional-decarative-javascript-preso">https://github.com/ccorcos/functional-decarative-javascript-preso</a>
         </p>
+      </section>
+      <section id="toc">
+        <h3>
+          Table of Contents
+        </h3>
+        <ul>
+          <li>
+            <a href="#/what-is-declarative-programming">
+              What is declarative programming ?
+            </a>
+          </li>
+          <li>
+            <a href="#/curried-function">
+              Curried function
+            </a>
+          </li>
+          <li>
+            <a href="#/reduce-function">
+              Reduce function
+            </a>
+          </li>
+          <li>
+            <a href="#/why-compose">
+              Why compose ?
+            </a>
+          </li>
+          <li>
+            <a href="#/composable">
+              Composable
+            </a>
+          </li>
+        </ul>
       </section>
       <section>
         <h2>Functional Programming</h2>
@@ -113,7 +145,7 @@ const getTotalOverdueAmount = loans => {
           <li class="fragment">This code isn't <i>declarative</i>.</li>
         </ul>
       </section>
-      <section>
+      <section id="what-is-declarative-programming">
         <h2>Functional Programming</h2>
         <p>What is <a href="https://en.wikipedia.org/wiki/Declarative_programming">declarative</a> programming?</p>
         <p class="fragment">Say what you want, not how you want it done.</p>
@@ -248,7 +280,7 @@ const femaleUsers = users.filter(isFemale);
           </li>
         </ul>
       </section>
-      <section>
+      <section id="curried-function">
         <h2>Functional Programming</h2>
         <p>
           A <a href="https://en.wikipedia.org/wiki/Currying">curried funtion</a>
@@ -416,7 +448,7 @@ const v4 = reduce(sum, 0)(v3);
           </code>
         </pre>
       </section>
-      <section>
+      <section id="reduce-function">
         <h2>Functional Programming</h2>
         <p>
           <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=b">Reduce</a> function
@@ -493,7 +525,7 @@ expect(fn(input)).toEqual(totalOverdueAmount); // true
           </code>
         </pre>
       </section>
-      <section>
+      <section id="why-compose">
         <h2>Functional Programming</h2>
         <p>
           Why <a>Compose</a> ?
@@ -520,7 +552,7 @@ const fn = compose(
           </li>
         </ul>
       </section>
-      <section>
+      <section id="composable">
         <h2>Functional Programming</h2>
         <p>
           Composable ?
@@ -623,6 +655,6 @@ gtag('js', new Date());
 
 gtag('config', 'UA-72851924-2');
 </script>
-</body>
+<script type="text/javascript" src="bundle.js"></script></body>
 
 </html>
