@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "yarn clean && NODE_ENV=production webpack -p",
+    "build": "yarn clean && NODE_ENV=production webpack",
     "deploy": "gh-pages -d build",
     "clean": "rimraf build",
     "precommit": "lint-staged --verbose",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
     "babel-plugin-module-resolver": "^2.7.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-flow": "^6.23.0",

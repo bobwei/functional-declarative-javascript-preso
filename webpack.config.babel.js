@@ -33,12 +33,25 @@ const config = {
         ]
       : [new webpack.HotModuleReplacementPlugin()]),
   ],
-  devtool: 'cheap-eval-source-map',
+  devtool:
+    process.env.NODE_ENV === 'production'
+      ? 'source-map'
+      : 'cheap-eval-source-map',
   module: {
     loaders: [
       {
         test: /\.html$/,
         loader: 'raw-loader',
+      },
+      {
+        test: /\.(js|jsx)$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: { cacheDirectory: true },
+          },
+        ],
+        exclude: /node_modules/,
       },
     ],
   },
