@@ -19,6 +19,9 @@ const config = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
     new CopyWebpackPlugin([{ from: 'src/modules/presentation' }]),
+    new HtmlWebpackPlugin({
+      template: './src/modules/presentation/index.html',
+    }),
     ...(process.env.NODE_ENV === 'production'
       ? [
           new webpack.optimize.UglifyJsPlugin({
@@ -28,12 +31,7 @@ const config = {
           }),
           new webpack.optimize.OccurrenceOrderPlugin(),
         ]
-      : [
-          new webpack.HotModuleReplacementPlugin(),
-          new HtmlWebpackPlugin({
-            template: './src/modules/presentation/index.html',
-          }),
-        ]),
+      : [new webpack.HotModuleReplacementPlugin()]),
   ],
   module: {
     loaders: [
