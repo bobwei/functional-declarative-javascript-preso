@@ -1,13 +1,17 @@
-/* eslint-disable global-require */
-/* global document */
+/* global document, Reveal */
 import R from 'ramda';
 import $ from 'jquery';
-
-if (process.env.NODE_ENV !== 'production') {
-  require('./index.html');
-}
+import './dev';
 
 $(document).on(
   'keypress',
-  R.cond([[R.propEq('keyCode', 109), () => console.log('on menu click')]]),
+  R.cond([
+    [
+      R.propEq('keyCode', 109),
+      () => {
+        /* toc page */
+        Reveal.slide(1);
+      },
+    ],
+  ]),
 );
