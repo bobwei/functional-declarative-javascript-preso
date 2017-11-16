@@ -33,6 +33,7 @@ const config = {
         ]
       : [new webpack.HotModuleReplacementPlugin()]),
   ],
+  devtool: 'cheap-eval-source-map',
   module: {
     loaders: [
       {
