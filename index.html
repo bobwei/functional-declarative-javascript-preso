@@ -501,6 +501,18 @@ expect(fn(input)).toEqual(totalOverdueAmount); // true
       <section>
         <h2>Functional Programming</h2>
         <p>
+          Compose function
+        </p>
+        <pre>
+          <code data-trim data-noescape class="language-js">
+/* Suppose f, g are two functions. x is data. */
+compose(f, g)(x) === f(g(x)); // true
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Functional Programming</h2>
+        <p>
           More generalize
         </p>
         <pre>
