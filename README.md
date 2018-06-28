@@ -11,5 +11,6 @@ Introduction to functional programming in Javascript.
 
 
 ## Original Article
+- [https://ccorcos.github.io/functional-decarative-javascript-preso](https://ccorcos.github.io/functional-decarative-javascript-preso)
 - [http://www.chetcorcos.com/functional-decarative-javascript-preso](http://www.chetcorcos.com/functional-decarative-javascript-preso)
 - [https://github.com/ccorcos/functional-decarative-javascript-preso](https://github.com/ccorcos/functional-decarative-javascript-preso)
